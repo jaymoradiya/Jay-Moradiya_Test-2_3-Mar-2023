@@ -2,7 +2,9 @@
 <mat-form-field>
     <mat-label>Programs</mat-label>
     <mat-select [formControl]="programsControl" multiple>
-        <mat-option [value]="selectAllProgram" (click)="selectProgram(program)"
+        <mat-option *ngIf="programs.length == 0" [disabled]="true" class="no-data">No Data
+            available</mat-option>
+        <mat-option *ngIf="programs.length > 0" [value]="selectAllProgram" (click)="selectProgram(program)"
             #program>{{selectAllProgram.programName}}</mat-option>
         <mat-select-trigger>
             {{(programsControl.value?.[0]?.programName || '') }}
@@ -21,7 +23,10 @@
 <mat-form-field appearance="fill" style="margin-left: 24px;">
     <mat-label>Projects</mat-label>
     <mat-select [formControl]="projectsControl" multiple>
-        <mat-option [value]="selectAllProject" (click)="selectProject(project)"
+
+        <mat-option *ngIf="allAvailableProjects.length == 0" [disabled]="true" class="no-data">No Data
+            available</mat-option>
+        <mat-option *ngIf="allAvailableProjects.length > 0" [value]="selectAllProject" (click)="selectProject(project)"
             #project>{{selectAllProject.projectName}}</mat-option>
 
         <mat-select-trigger>

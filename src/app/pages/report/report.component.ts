@@ -113,11 +113,14 @@ export class ReportComponent implements OnInit {
   selectProgram(ev: MatOption) {
     if (ev.selected) {
       this.programsControl.setValue([this.selectAllProgram, ...this.programs]);
+      this.selectAllProjectRef?.deselect();
       this.selectAllProgram.programName = 'Deselect All';
     } else {
       this.programsControl.setValue([]);
       this.selectAllProgram.programName = 'Select All';
     }
+    this.selectAllProject.projectName = 'Select All';
+    this.projectsControl.setValue([]);
   }
   selectProject(ev: MatOption) {
     if (ev.selected) {
