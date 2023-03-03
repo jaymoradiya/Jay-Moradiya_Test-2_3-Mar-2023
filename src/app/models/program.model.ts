@@ -1,3 +1,4 @@
+// Program Api Response
 export interface ProgramApiResponse {
   success: boolean;
   message: string;

@@ -9,32 +9,19 @@ import {
 import {
   ProgramApiResponse,
   VirtualProgram,
-} from 'src/app/models/virtual-program.model';
+} from 'src/app/models/program.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ReportService {
-  programs = new BehaviorSubject<VirtualProgram[]>([]);
-  projects = new BehaviorSubject<VirtualProject[]>([]);
-
   constructor(private http: HttpClient) {}
 
   getPrograms(): Observable<ProgramApiResponse> {
-    return this.http.get<ProgramApiResponse>(API.BASE_URL + API.PROGRAMS).pipe(
-      map((res) => {
-        // this.programs.next(res.virtualProgramList);
-        return res;
-      })
-    );
+    return this.http.get<ProgramApiResponse>(API.BASE_URL + API.PROGRAMS);
   }
 
   getProjects(): Observable<ProjectApiResponse> {
-    return this.http.get<ProjectApiResponse>(API.BASE_URL + API.PROJECTS).pipe(
-      map((res) => {
-        // this.projects.next(res.virtualProgramDetails);
-        return res;
-      })
-    );
+    return this.http.get<ProjectApiResponse>(API.BASE_URL + API.PROJECTS);
   }
 }

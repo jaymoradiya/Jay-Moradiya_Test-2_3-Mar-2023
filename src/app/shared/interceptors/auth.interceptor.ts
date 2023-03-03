@@ -25,7 +25,6 @@ export class LogInterceptor implements HttpInterceptor {
         Authorization: 'Bearer ' + API.TOKEN,
       }),
     });
-
     return next.handle(newRequest);
   }
 }

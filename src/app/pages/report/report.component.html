@@ -1,6 +1,9 @@
+<!-- program dropdown -->
 <mat-form-field>
     <mat-label>Programs</mat-label>
     <mat-select [formControl]="programsControl" multiple>
+        <mat-option [value]="selectAllProgram" (click)="selectProgram(program)"
+            #program>{{selectAllProgram?.programName}}</mat-option>
         <mat-select-trigger>
             {{(programsControl.value?.[0]?.programName || '') }}
             <span *ngIf="(programsControl.value?.length || 0) > 1" class="drop-down">
@@ -9,23 +12,26 @@
             </span>
         </mat-select-trigger>
 
-        <mat-option *ngFor="let program of programs" [value]="program">{{ program.programName}}</mat-option>
+        <mat-option *ngFor="let program of programs" [value]="program">{{
+            program.programName}}</mat-option>
     </mat-select>
 </mat-form-field>
 
+<!-- project dropdown -->
 <mat-form-field appearance="fill" style="margin-left: 24px;">
     <mat-label>Projects</mat-label>
     <mat-select [formControl]="projectsControl" multiple>
+        <mat-option [value]="selectAllProject" (click)="selectProject(project)"
+            #project>{{selectAllProject?.projectName}}</mat-option>
+
         <mat-select-trigger>
-            {{projectsControl.value?.[0] || ''}}
+            {{projectsControl.value?.[0]?.projectName || ''}}
             <span *ngIf="(projectsControl.value?.length || 0) > 1" class="drop-down">
                 (+{{(projectsControl.value?.length || 0) - 1}} {{projectsControl.value?.length === 2 ? 'other' :
                 'others'}})
             </span>
         </mat-select-trigger>
-        <mat-option *ngFor="let project of availableProjects" [value]="project.projectName">{{
+        <mat-option *ngFor="let project of allAvailableProjects" [value]="project">{{
             project.projectName}}</mat-option>
     </mat-select>
 </mat-form-field>
-
-<button type="button" (click)="getData()">Get Data</button>
